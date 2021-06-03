@@ -26,6 +26,7 @@ import typing
 
 import paho.mqtt.client
 import switchbot
+import magicswitchbot
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -155,7 +156,7 @@ class _ButtonAutomator(_MQTTControlledActor):
     ]
 
     def __init__(self, mac_address) -> None:
-        self._device = switchbot.Switchbot(mac=mac_address)
+        self._device = magicswitchbot.MagicSwitchbot(mac=mac_address)
         super().__init__(mac_address=mac_address)
 
     def execute_command(

@@ -20,7 +20,7 @@ import pathlib
 
 import setuptools
 
-_REPO_URL = "https://github.com/fphammerle/switchbot-mqtt"
+_REPO_URL = "https://github.com/ezaton/switchbot-mqtt"
 
 setuptools.setup(
     name="switchbot-mqtt",
@@ -54,6 +54,7 @@ setuptools.setup(
         "press",
         "push",
         "switchbot",
+        "magicswitchbot",
     ],
     classifiers=[
         # https://pypi.org/classifiers/
@@ -74,6 +75,7 @@ setuptools.setup(
     install_requires=[
         # >=0.9.0 for SwitchbotCurtain
         "PySwitchbot>=0.9.0,<0.10",
+        "PyMagicSwitchbot>=0.9.0",
         "paho-mqtt<2",
     ],
     setup_requires=["setuptools_scm"],

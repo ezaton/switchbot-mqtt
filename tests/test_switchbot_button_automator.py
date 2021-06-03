@@ -31,12 +31,12 @@ import switchbot_mqtt
 @pytest.mark.parametrize(
     ("message_payload", "action_name"),
     [
-        (b"on", "switchbot.Switchbot.turn_on"),
-        (b"ON", "switchbot.Switchbot.turn_on"),
-        (b"On", "switchbot.Switchbot.turn_on"),
-        (b"off", "switchbot.Switchbot.turn_off"),
-        (b"OFF", "switchbot.Switchbot.turn_off"),
-        (b"Off", "switchbot.Switchbot.turn_off"),
+        (b"on", "magicswitchbot.MagicSwitchbot.turn_on"),
+        (b"ON", "magicswitchbot.MagicSwitchbot.turn_on"),
+        (b"On", "magicswitchbot.MagicSwitchbot.turn_on"),
+        (b"off", "magicswitchbot.MagicSwitchbot.turn_off"),
+        (b"OFF", "magicswitchbot.MagicSwitchbot.turn_off"),
+        (b"Off", "magicswitchbot.MagicSwitchbot.turn_off"),
     ],
 )
 @pytest.mark.parametrize("command_successful", [True, False])
@@ -44,7 +44,7 @@ def test_execute_command(
     caplog, mac_address, message_payload, action_name, command_successful
 ):
     with unittest.mock.patch(
-        "switchbot.Switchbot.__init__", return_value=None
+        "magicswitchbot.MagicSwitchbot.__init__", return_value=None
     ) as device_init_mock, caplog.at_level(logging.INFO):
         actor = switchbot_mqtt._ButtonAutomator(mac_address=mac_address)
         with unittest.mock.patch.object(
@@ -86,7 +86,7 @@ def test_execute_command(
 @pytest.mark.parametrize("mac_address", ["aa:bb:cc:dd:ee:ff"])
 @pytest.mark.parametrize("message_payload", [b"EIN", b""])
 def test_execute_command_invalid_payload(caplog, mac_address, message_payload):
-    with unittest.mock.patch("switchbot.Switchbot") as device_mock, caplog.at_level(
+    with unittest.mock.patch("magicswitchbot.MagicSwitchbot") as device_mock, caplog.at_level(
         logging.INFO
     ):
         actor = switchbot_mqtt._ButtonAutomator(mac_address=mac_address)
@@ -126,7 +126,7 @@ def test_execute_command_bluetooth_error(caplog, mac_address, message_payload):
         )
     assert caplog.record_tuples == [
         (
-            "switchbot",
+            "magicswitchbot",
             logging.ERROR,
             "Switchbot communication failed. Stopping trying.",
         ),
